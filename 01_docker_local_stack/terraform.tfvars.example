@@ -1,0 +1,4 @@
+environment   = "lab-205m"
+frontend_port = 8080
+enable_cache  = true
+db_password   = "SuperSecretLabPass2026!"

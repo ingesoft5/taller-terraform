@@ -1,0 +1,18 @@
+# Terraform local plugins and providers
+.terraform/
+.terraform.lock.hcl.tmp*
+
+# State files (Atomic & Sensitive - Single Source of Truth)
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# Secret definitions
+secrets.tfvars
+*.secret.tfvars
+
+# System files
+.DS_Store
+*.swp
+*~
