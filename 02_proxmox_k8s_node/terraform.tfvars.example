@@ -1,0 +1,14 @@
+# ==============================================================================
+# Parámetros de Conexión al Clúster Proxmox VE (Ejemplo)
+# En un entorno real, estos valores se obtienen desde la consola web de Proxmox:
+# Datacenter -> Permissions -> API Tokens -> Add
+# ==============================================================================
+
+pve_api_url          = "https://pve.icesi.edu.co:8006/api2/json"
+pve_api_token_id     = "devops-estudiante@pve!taller-token"
+pve_api_token_secret = "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+
+node_count    = 3
+target_node   = "pve-lab-01"
+template_name = "ubuntu-2204-cloudinit-template"
+ssh_public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG5kDevOpsIcesi2026k8sStudentKey estudiante@icesi.edu.co"

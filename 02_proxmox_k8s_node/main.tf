@@ -9,8 +9,10 @@ terraform {
 }
 
 provider "proxmox" {
-  pm_api_url      = var.pve_api_url
-  pm_tls_insecure = true
+  pm_api_url          = var.pve_api_url
+  pm_api_token_id     = var.pve_api_token_id
+  pm_api_token_secret = var.pve_api_token_secret
+  pm_tls_insecure     = true
 }
 
 resource "proxmox_vm_qemu" "k8s_worker_node" {
@@ -24,7 +26,7 @@ resource "proxmox_vm_qemu" "k8s_worker_node" {
   os_type = "cloud-init"
 
   ipconfig0 = "ip=10.147.20.${100 + count.index + 1}/24,gw=10.147.20.1"
-  sshkeys   = file("~/.ssh/id_rsa.pub")
+  sshkeys   = var.ssh_public_key
 
   tags = "k8s,ingesoftv,worker"
 }

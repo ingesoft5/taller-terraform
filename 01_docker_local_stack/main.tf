@@ -18,13 +18,13 @@ locals {
 
 # 1. Red bridge interna aislada
 resource "docker_network" "app_network" {
-  name   = "${locals.app_prefix}-net"
+  name   = "${local.app_prefix}-net"
   driver = "bridge"
 }
 
 # 2. Volumen persistente para datos de BD
 resource "docker_volume" "pg_data" {
-  name = "${locals.app_prefix}-pgdata"
+  name = "${local.app_prefix}-pgdata"
 }
 
 # 3. Base de Datos PostgreSQL
@@ -34,7 +34,7 @@ resource "docker_image" "postgres" {
 }
 
 resource "docker_container" "postgres_db" {
-  name  = "${locals.app_prefix}-postgres"
+  name  = "${local.app_prefix}-postgres"
   image = docker_image.postgres.image_id
 
   env = [
@@ -63,7 +63,7 @@ resource "docker_image" "redis" {
 
 resource "docker_container" "redis_cache" {
   count = var.enable_cache ? 1 : 0
-  name  = "${locals.app_prefix}-redis"
+  name  = "${local.app_prefix}-redis"
   image = docker_image.redis.image_id
 
   networks_advanced {
@@ -80,7 +80,7 @@ resource "docker_image" "nginx" {
 }
 
 resource "docker_container" "nginx_frontend" {
-  name  = "${locals.app_prefix}-frontend"
+  name  = "${local.app_prefix}-frontend"
   image = docker_image.nginx.image_id
 
   networks_advanced {
